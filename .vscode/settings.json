@@ -1,0 +1,24 @@
+{
+    "editor.formatOnSave": false,
+
+    // MARKDOWN
+
+    "[markdown]": {
+        "editor.formatOnSave": true,
+    },
+    "markdownlint.config": {
+        // ul-indent
+        "MD007": {
+            "indent": 4
+        },
+        // no-multiple-space-blockquote
+        "MD027": true,
+        // list-marker-space
+        "MD030": {
+            "ul_single": 3,
+            "ul_multi": 3,
+            "ol_single": 2,
+            "ol_multi": 2
+        },
+    },
+}

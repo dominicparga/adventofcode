@@ -1,0 +1,16 @@
+{
+    "tasks": [
+        {
+            "label": "[adventofcode] build",
+            "type": "shell",
+            "command": "${workspaceFolder}/scripts/build.sh",
+            "problemMatcher": []
+        },
+        {
+            "label": "[adventofcode] run",
+            "type": "shell",
+            "command": "${workspaceFolder}/bin/adventofcode",
+            "problemMatcher": []
+        }
+    ],
+}
