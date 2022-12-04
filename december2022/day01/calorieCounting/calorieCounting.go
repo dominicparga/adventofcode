@@ -4,6 +4,7 @@ import (
 	"flag"
 	"fmt"
 	"os"
+	"sort"
 	"strconv"
 	"strings"
 	"sync"
@@ -18,27 +19,26 @@ func sumUpCalorieGroup(calorieGroup string, calorieSumChannel chan<- int) {
 	calorieSumChannel <- calorieSum
 }
 
-func selectMax(maxCalorieSum *int, calorieSumChannel <-chan int) {
-	calorieSum := <-calorieSumChannel
-	if *maxCalorieSum < calorieSum {
-		*maxCalorieSum = calorieSum
-	}
-}
-
 type Config struct {
 	inputFilepath string
+	kSum          uint
 }
 
 func parseCmdline(args []string) Config {
 	flagSet := flag.NewFlagSet("calorie-counting", flag.ExitOnError)
+	var helpMsg string
 
-	help_msg := "The Elves' calorie list (for Santa's reindeers)"
-	inputFilepath := flagSet.String("input-file", "", help_msg)
+	helpMsg = "The Elves' Calorie list (for Santa's reindeers)"
+	inputFilepath := flagSet.String("input-file", "", helpMsg)
+
+	helpMsg = "Sum up the Calories of this number of Elves' with maximum Calorie carriage"
+	kSum := flagSet.Uint("sum-k", 1, helpMsg)
 
 	flagSet.Parse(args)
 
 	return Config{
 		inputFilepath: *inputFilepath,
+		kSum:          *kSum,
 	}
 }
 
@@ -58,15 +58,22 @@ func Run(args []string) error {
 		waitGroup.Add(1)
 		go sumUpCalorieGroup(calorieGroup, calorieSumChannel)
 	}
-	maxCalorieSum := 0
+	calorieSumList := []int{}
 	go func() {
 		for {
-			selectMax(&maxCalorieSum, calorieSumChannel)
+			calorieSumList = append(calorieSumList, <-calorieSumChannel)
 			waitGroup.Done()
 		}
 	}()
 	waitGroup.Wait()
-	fmt.Println("Maximum sum of calories:", maxCalorieSum)
+	sort.Slice(calorieSumList, func(i int, j int) bool {
+		return calorieSumList[i] > calorieSumList[j]
+	})
+	maxCalorieSum := 0
+	for i := 0; i < int(config.kSum); i++ {
+		maxCalorieSum += calorieSumList[i]
+	}
+	fmt.Println("Sum of", config.kSum, "maximum sums of calories:", maxCalorieSum)
 
 	return nil
 }
