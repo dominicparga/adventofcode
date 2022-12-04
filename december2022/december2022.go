@@ -2,6 +2,7 @@ package december2022
 
 import (
 	"adventofcode/december2022/day01"
+	"adventofcode/december2022/day02"
 	"errors"
 	"fmt"
 	"log"
@@ -43,8 +44,10 @@ func Run(args []string) error {
 
 	var err error
 	switch config.day {
-	case "1":
+	case "1", "calorie-counting":
 		err = day01.Run(config.args)
+	case "2", "rock-paper-scissors":
+		err = day02.Run(config.args)
 	default:
 		err = errors.New(
 			fmt.Sprintln("[ERROR] Day", config.day, "is not supported.\n",

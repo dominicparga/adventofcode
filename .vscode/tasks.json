@@ -33,7 +33,7 @@
         {
             "id": "runargs",
             "description": "Arguments",
-            "default": "2022 1 calorie-counting -input-file res/december2022/day01/calorieCounting.txt",
+            "default": "2022 rock-paper-scissors -calorie-group-list-file res/december2022/day02/encryptedStrategyGuide.txt",
             "type": "promptString"
         }
     ]
