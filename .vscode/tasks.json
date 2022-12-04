@@ -4,13 +4,37 @@
             "label": "[adventofcode] build",
             "type": "shell",
             "command": "${workspaceFolder}/scripts/build.sh",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": false,
+                "clear": false,
+            },
             "problemMatcher": []
         },
         {
             "label": "[adventofcode] run",
             "type": "shell",
-            "command": "${workspaceFolder}/bin/adventofcode",
+            "command": "${workspaceFolder}/bin/adventofcode ${input:runargs}",
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": true,
+                "panel": "new",
+                "showReuseMessage": false,
+                "clear": false,
+            },
             "problemMatcher": []
         }
     ],
+    "inputs": [
+        {
+            "id": "runargs",
+            "description": "Arguments",
+            "default": "2022 1 calorie-counting -input-file res/december2022/day01/calorieCounting.txt",
+            "type": "promptString"
+        }
+    ]
 }
