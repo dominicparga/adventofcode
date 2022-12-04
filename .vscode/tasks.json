@@ -1,4 +1,5 @@
 {
+    "version": "2.0.0",
     "tasks": [
         {
             "label": "[adventofcode] build",
@@ -33,7 +34,7 @@
         {
             "id": "runargs",
             "description": "Arguments",
-            "default": "2022 rucksack-reorganization -rucksacks-file res/december2022/day03.packedRucksacks.txt",
+            "default": "2022 rucksack-reorganization -split-factor 3 -rucksacks-file res/december2022/day03.packedRucksacks.txt",
             "type": "promptString"
         }
     ]

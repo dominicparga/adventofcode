@@ -66,25 +66,14 @@ func createRucksackListList(rawRucksackList string, splitFactor int) ([][]Rucksa
 			k := len(rucksack) / -splitFactor
 			rucksackListList = append(rucksackListList, []Rucksack{rucksack[:k], rucksack[k:]})
 		}
-	// case 3:
-	// 	i := 0
-	// 	var itemPackage []string
-	// 	for i < len(packedItemsList) {
-	// 		if len(itemPackage) < 3 {
-	// 			itemPackage = append(itemPackage, packedItemsList[i])
-	// 			i++
-	// 			continue
-	// 		} else {
-
-	// 		}
-	// 	}
-	// 	for _, packedItems := range packedItemsList {
-	// 		waitGroup.Add(1)
-	// 		k := len(packedItems) / -splitFactor
-	// 		firstCompartment := packedItems[:k]
-	// 		secondCompartment := packedItems[k:]
-	// 		go findCommonItemTypes(prioritySumChannel, firstCompartment, secondCompartment)
-	// 	}
+	case 3:
+		i := 0
+		for ; i < len(originalRucksackList); i += 3 {
+			rucksackListList = append(rucksackListList, originalRucksackList[i:i+3])
+		}
+		if i < len(originalRucksackList) {
+			rucksackListList = append(rucksackListList, originalRucksackList[i:])
+		}
 	default:
 		return nil, errors.New(fmt.Sprint("Unsupported split factor ", splitFactor))
 	}
