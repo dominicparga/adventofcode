@@ -25,7 +25,7 @@ type Config struct {
 }
 
 func parseCmdline(args []string) Config {
-	flagSet := flag.NewFlagSet("calorie-counting", flag.ExitOnError)
+	flagSet := flag.NewFlagSet("Calorie Counting", flag.ExitOnError)
 	var helpMsg string
 
 	helpMsg = "The Elves' Calorie list (for Santa's reindeers)"

@@ -67,7 +67,7 @@ type Config struct {
 }
 
 func parseCmdline(args []string) Config {
-	flagSet := flag.NewFlagSet("rock-paper-scissors", flag.ExitOnError)
+	flagSet := flag.NewFlagSet("Rock Paper Scissors", flag.ExitOnError)
 	var helpMsg string
 
 	helpMsg = "The Elves' encrypted strategy guide for Rock Paper Scissors"
