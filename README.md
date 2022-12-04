@@ -2,6 +2,8 @@
 
 ## Usage
 
+After installing Golang:
+
 ```bash
 ./scripts/build.sh
 ./bin/adventofcode
