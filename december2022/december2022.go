@@ -4,6 +4,7 @@ import (
 	"adventofcode/december2022/day01"
 	"adventofcode/december2022/day02"
 	"adventofcode/december2022/day03"
+	"adventofcode/december2022/day04"
 	"errors"
 	"fmt"
 	"log"
@@ -51,6 +52,8 @@ func Run(args []string) error {
 		err = day02.Run(config.args)
 	case "3", "03", "rucksack-reorganization":
 		err = day03.Run(config.args)
+	case "4", "04", "camp-cleanup":
+		err = day04.Run(config.args)
 	default:
 		err = errors.New(
 			fmt.Sprintln("[ERROR] Day", config.day, "is not supported.\n",
