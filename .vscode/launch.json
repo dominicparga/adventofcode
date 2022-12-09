@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["2022", "camp-cleanup" ,"-assignment-pairs-file", "res/december2022/day04.assignmentPairs.txt"]
+            "args": ["2022", "supply-stacks", "-stack-and-moves-file", "res/december2022/day05.stackAndStackMoves.txt"]
         }
     ]
 }
