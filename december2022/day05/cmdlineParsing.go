@@ -6,6 +6,7 @@ import (
 
 type Config struct {
 	stackAndMovesFilepath string
+	multimoveStrategy     string
 }
 
 func parseCmdline(args []string) Config {
@@ -15,9 +16,13 @@ func parseCmdline(args []string) Config {
 	helpMsg = "File containing stack and stack moves"
 	stackAndMovesFilepath := flagSet.String("stack-and-moves-file", "", helpMsg)
 
+	helpMsg = "Strategy (LIFO vs FIFO) when moving multiple crates"
+	multimoveStrategy := flagSet.String("multimove-strategy", "lifo", helpMsg)
+
 	flagSet.Parse(args)
 
 	return Config{
 		stackAndMovesFilepath: *stackAndMovesFilepath,
+		multimoveStrategy:     *multimoveStrategy,
 	}
 }

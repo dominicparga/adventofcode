@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func parseStack(stackContent string) []stack[string] {
+func parseStack(stackContent string) []Stack[string] {
 	// Input might look like
 	//     [C]
 	//     [V] [R]
@@ -25,9 +25,9 @@ func parseStack(stackContent string) []stack[string] {
 	// .VR
 	// ZQF
 
-	stackList := []stack[string]{}
+	stackList := []Stack[string]{}
 	for i := 0; i < len(stackRowList[0]); i++ {
-		stackList = append(stackList, stack[string]{top: nil, size: 0})
+		stackList = append(stackList, Stack[string]{top: nil, size: 0})
 	}
 	for i := len(stackRowList) - 1; i >= 0; i-- {
 		row := stackRowList[i]
@@ -72,7 +72,7 @@ func Run(args []string) error {
 	moveList := parseMoves(stackAndMovesContentList[1])
 
 	for _, move := range moveList {
-		stackList[move.fromIdx].MoveTo(&stackList[move.toIdx], move.count)
+		stackList[move.fromIdx].MoveTo(&stackList[move.toIdx], move.count, config.multimoveStrategy)
 	}
 
 	finalString := ""
