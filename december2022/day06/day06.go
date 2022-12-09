@@ -15,7 +15,7 @@ func Run(args []string) error {
 	streamData := string(streamByteList)
 
 	runeList := []rune(streamData)
-	patternLen := 4
+	patternLen := config.patternLen
 
 	i := 0
 	for i < len(runeList)-(patternLen-1) {
