@@ -10,7 +10,7 @@ type Config struct {
 }
 
 func parseCmdline(args []string) Config {
-	flagSet := flag.NewFlagSet("Camp Cleanup", flag.ExitOnError)
+	flagSet := flag.NewFlagSet("Supply Stacks", flag.ExitOnError)
 	var helpMsg string
 
 	helpMsg = "File containing stack and stack moves"
