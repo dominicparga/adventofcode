@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"time"
 )
 
 func usage() string {
@@ -40,7 +41,16 @@ func parseCmdline(args []string) Config {
 	}
 }
 
+func createStopwatch() func() time.Duration {
+	startMoment := time.Now()
+	return func() time.Duration {
+		return time.Since(startMoment)
+	}
+}
+
 func main() {
+	defer fmt.Println("Time elapsed: ", createStopwatch()())
+
 	config := parseCmdline(os.Args[1:])
 
 	var err error
