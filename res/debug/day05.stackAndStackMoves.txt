@@ -1,0 +1,7 @@
+    [C]    
+    [P] [C]
+[Z] [Q] [F]
+ 1   2   3 
+
+move 1 from 1 to 2
+move 3 from 2 to 3
