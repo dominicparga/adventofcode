@@ -10,7 +10,7 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["2022", "tuning-trouble", "-stream-file", "res/december2022/day06.messageStream.txt"]
+            "args": ["2022", "7", "-log-file", "res/debug/day07.log.txt"]
         }
     ]
 }

@@ -7,6 +7,7 @@ import (
 	"adventofcode/december2022/day04"
 	"adventofcode/december2022/day05"
 	"adventofcode/december2022/day06"
+	"adventofcode/december2022/day07"
 	"errors"
 	"fmt"
 	"log"
@@ -60,6 +61,8 @@ func Run(args []string) error {
 		err = day05.Run(config.args)
 	case "6", "06", "tuning-trouble":
 		err = day06.Run(config.args)
+	case "7", "07", "no-space-left-on-device":
+		err = day07.Run(config.args)
 	default:
 		err = errors.New(
 			fmt.Sprintln("[ERROR] Day", config.day, "is not supported.\n",

@@ -34,7 +34,7 @@
         {
             "id": "runargs",
             "description": "Arguments",
-            "default": "2022 tuning-trouble -pattern-length 4 -stream-file res/december2022/day06.messageStream.txt",
+            "default": "2022 7 -log-file res/official/december2022/day07.log.txt",
             "type": "promptString"
         }
     ]
