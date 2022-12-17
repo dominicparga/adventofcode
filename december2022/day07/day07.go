@@ -48,7 +48,6 @@ func builtFileTree(taskList *[]*task) ([]*AbsFile, fileSize) {
 	for _, t := range *taskList {
 		waitGroup.Add(1)
 		task := *t
-		// 49192532
 		go convertTaskToAbsFileList(task, fileChannel)
 	}
 
@@ -66,6 +65,7 @@ func builtFileTree(taskList *[]*task) ([]*AbsFile, fileSize) {
 	}()
 
 	waitGroup.Wait()
+	// wrong: 49192532
 	return fileList, totalSize
 }
 
@@ -77,19 +77,36 @@ func convertTaskToAbsFileList(t task, fileChannel chan<- *[]*AbsFile) {
 		if len(line) == 0 {
 			continue
 		}
-		if len(line) >= 4 && line[0:4] == "dir " {
-			continue
-		}
 		if len(line) >= 4 && line[0:4] == "$ ls" {
 			continue
 		}
 
-		tmp := strings.Split(line, " ")
-		size, _ := strconv.ParseUint(tmp[0], 10, 0)
-		name := tmp[1]
+		name := new(fileName)
+		var path []fileName
+		var size fileSize
+		if len(line) >= 4 && line[0:4] == "dir " {
+			// is directory
+
+			name = nil
+
+			path = make([]fileName, len(t.path))
+			copy(path, t.path)
+			path = append(path, line[4:])
+
+			size = 0
+		} else {
+			// is file
+
+			tmp := strings.Split(line, " ")
+
+			*name = tmp[1]
+
+			size, _ = strconv.ParseUint(tmp[0], 10, 0)
+		}
+
 		fileList = append(fileList, &AbsFile{
 			name: name,
-			path: t.path,
+			path: path,
 			size: size,
 		})
 	}

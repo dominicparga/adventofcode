@@ -11,7 +11,11 @@ type task struct {
 }
 
 type AbsFile struct {
-	name fileName
+	name *fileName
 	path []fileName
 	size fileSize
+}
+
+func (absFile AbsFile) IsDirectory() bool {
+	return absFile.name == nil
 }
