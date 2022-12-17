@@ -10,7 +10,16 @@
             "request": "launch",
             "mode": "auto",
             "program": "${workspaceFolder}/main.go",
-            "args": ["2022", "7", "-log-file", "res/debug/day07.log.txt"]
+            "args": ["2022", "7", "-log-file", "res/${input:mode}/december2022/day07.log.txt"]
+        }
+    ],
+    "inputs": [
+        {
+            "description": "Input kind",
+            "id": "mode",
+            "type": "pickString",
+            "default": "debug",
+            "options": ["debug", "official"],
         }
     ]
 }

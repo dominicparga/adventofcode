@@ -30,7 +30,10 @@ func builtTaskList(cdSplittedLineList []cdSplittedLine) *[]*task {
 		dirname, cdFreeLine := splittedNameAndRest(cdSplittedLine)
 		if dirname != ".." {
 			path = append(path, dirname)
-			taskList = append(taskList, &task{path: path, cdFreeLine: cdFreeLine})
+			// manual deepcopy since path is a slice, hence shallow copies otherwise
+			newPath := make([]fileName, len(path))
+			copy(newPath, path)
+			taskList = append(taskList, &task{path: newPath, cdFreeLine: cdFreeLine})
 		} else {
 			path = path[:len(path)-1]
 		}
@@ -44,7 +47,9 @@ func builtFileTree(taskList *[]*task) ([]*AbsFile, fileSize) {
 	fileChannel := make(chan *[]*AbsFile)
 	for _, t := range *taskList {
 		waitGroup.Add(1)
-		go convertTaskToAbsFileList(*t, fileChannel)
+		task := *t
+		// 49192532
+		go convertTaskToAbsFileList(task, fileChannel)
 	}
 
 	fileList := []*AbsFile{}
